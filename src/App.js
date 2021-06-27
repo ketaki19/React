@@ -25,15 +25,15 @@
     //</div>
   //);
 //}
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
+//import React from "react";
+//import {
+  //BrowserRouter as Router,
+  //Switch,
+  //Route,
+  //Link,
+  //useParams,
+  //useRouteMatch
+//} //from "react-router-dom";
 
 // Since routes are regular React components, they
 // may be rendered anywhere in the app, including in
@@ -44,85 +44,105 @@ import {
 // React Router app is the same as code-splitting
 // any other React app.
 
-export default function NestingExample() {
-  return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/topics">
-            <Topics />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+//export default function NestingExample() {
+  //return (
+    //<Router>
+      //<div>
+       // <Switch>
+          //<Route exact path="/">
+           // <Home />
+          //</Route>
+          //<Route path="/topics">
+           // <Topics />
+          //</Route>
+        //</Switch>
+      //</div>
+    //</Router>
+  //);
+//}
+//import { useState } from "react";
 
-function Home() {
-  return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/topics">Topics</Link>
-        </li>
-      </ul>
-      <hr />
-      <h2>Home</h2>
-    </div>
-  );
-}
 
-function Topics() {
+//function Home() {
+  //return (
+    //<div>
+      //<ul>
+        //<li>
+          //<Link to="/">Home</Link>
+       // </li>
+        //<li>
+          //<Link to="/topics">Topics</Link>
+        //</li>
+      //</ul>
+      //<hr />
+      //<h2>Home</h2>
+    //</div>
+  //);
+//}
+
+//function Topics() {
   // The `path` lets us build <Route> paths that are
   // relative to the parent route, while the `url` lets
   // us build relative links.
 
-  return (
-    <div>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <h2>Topics</h2>
-      <ul>
-        <li>
-          <Link to={`/topics/rendering`}>Rendering with React</Link>
-        </li>
-        <li>
-          <Link to={`/topics/components`}>Components</Link>
-        </li>
-        <li>
-          <Link to={`/topics/props-v-state`}>Props v. State</Link>
-        </li>
-      </ul>
+  //return (
+    //<div>
+      //<li>
+        //<Link to="/">Home</Link>
+      //</li>
+      //<h2>Topics</h2>
+     // <ul>
+        //<li>
+         // <Link to={`/topics/rendering`}>Rendering with React</Link>
+        //</li>
+        //<li>
+          //<Link to={`/topics/components`}>Components</Link>
+        //</li>
+        //<li>
+         // <Link to={`/topics/props-v-state`}>Props v. State</Link>
+        //</li>
+      //</ul>
 
-      <Switch>
-        <Route exact path={"/"}>
-          <h3>Please select a topic.</h3>
-        </Route>
-        <Route path={`/topics/:topicId`}>
-          <Topic />
-        </Route>
-      </Switch>
-    </div>
-  );
-}
+      //<Switch>
+        //<Route exact path={"/"}>
+          //<h3>Please select a topic.</h3>
+        //</Route>
+        //<Route path={`/topics/:topicId`}>
+         // <Topic />
+        //</Route>
+      //</Switch>
+    //</div>
+ // );
+//}
 
-function Topic() {
+//function Topic() {
   // The <Route> that rendered this component has a
   // path of `/topics/:topicId`. The `:topicId` portion
   // of the URL indicates a placeholder that we can
   // get from `useParams()`.
-  let { topicId } = useParams();
+  //let { topicId } = useParams();
 
+  //return (
+    //<div>
+      //<h3>{topicId}</h3>
+    //</div>
+  //);
+//}
+import { useState } from "react";
+import ComponentB from "./ComponentB";
+import MyContext from "./MyContext";
+export default function App() {
+  const [myState, setMyState] = useState("Hello World");
+
+  console.log(useState("Hello World"));
   return (
-    <div>
-      <h3>{topicId}</h3>
-    </div>
+    <>
+      <MyContext.Provider value={myState}>
+        <div className="App">
+          <ComponentB />
+          <button onClick={() => setMyState("New value")}>Click Me</button>
+        </div>
+      </MyContext.Provider>
+    </>
   );
 }
